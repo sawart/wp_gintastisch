@@ -1,0 +1,61 @@
+.imgPage {
+	@include flex;
+	flex-flow: row nowrap;
+	max-width: 1366px;
+	margin: 7em auto 0;
+	
+	h3 {
+		text-align: left;
+	}
+	
+	#formBtn {
+		padding-left: 0;
+	}
+	
+	.leftCol, .rightCol {
+		width: 50%;
+		height: 65vh;
+		margin: .5em;
+	}
+	
+	.leftCol {
+		padding-right: 2em;
+	}
+
+}
+
+@media (max-width: 1366px) {
+	.imgPage {
+		.leftCol {
+			padding: 2em 2em 0 2em;
+		}
+	}
+
+}
+
+@media (max-width: 992px) {
+	.imgPage {
+		padding: 1em !important;
+		box-sizing: border-box;
+		
+		flex-flow: column nowrap;
+		
+		.leftCol, .rightCol {
+			padding: 0;
+			width: 100%;
+			height: auto;
+			box-sizing: border-box;
+		}
+		
+		.leftCol {
+			margin-bottom: 3em;
+		}
+		
+		.rightCol {
+			min-height: 500px;
+			margin: 0;
+		}
+	}
+
+}
+

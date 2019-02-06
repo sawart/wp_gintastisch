@@ -1,0 +1,220 @@
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.metaNav, .contactDetails  {
+	box-sizing: border-box;
+	@include flex;
+	justify-content: flex-end;
+	background-color: $white;
+	width: 100%;
+	height: 3em;
+	padding: 1em 2em 0 0;
+	
+	.phone {
+		margin-right: 2em;
+	}
+	
+	span {
+		display: inline-flex;
+		background-size: contain;
+		width: 25px;
+		height: 15px;
+		margin-right: .5em;
+	}
+	
+	.phone span {
+		background: url("../img/icons/phone.svg") no-repeat;
+		background-position: right;
+	}
+	
+	.mail span {
+		background: url("../img/icons/mail.svg") no-repeat;
+	}
+}
+
+.logo {
+	position: absolute;
+	top: -2em;
+	width: 150px;
+	height: 150px;
+	margin-left: 2em;
+}
+
+.bg {
+	background: $mainColor;
+	transition: ease-in-out .5s all;
+}
+
+nav {
+	position: fixed;
+	box-sizing: border-box;
+	width: 100%;
+	height: 4em;
+	padding-right: 2em;
+	background-color: transparent;
+	transition: ease-in-out .5s background;
+	
+	ul {
+	  	@include flex;
+	  	-webkit-flex-flow: row wrap;
+	  	justify-content: flex-end;
+		list-style: none;
+		
+		li {
+		  	display: block;
+		  	padding: 0 0 0 3em;
+			
+			a {
+				position: relative;
+				display: inline-block;
+				margin: 0 25px;
+				outline: none;
+				@include headline(700);
+				font-size: 1.2em;
+				color: $white;
+			}
+			
+			&:hover,
+			&:focus {
+				outline: none;
+				color: $white;
+			}
+		}
+	}
+}
+
+/* Effect 5: same word slide in */
+.cl-effect-5 li a {
+	overflow: hidden;
+	padding: 4px 4px;
+	height: 1em;
+}
+
+.cl-effect-5 li a span {
+	position: relative;
+	display: inline-block;
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s;
+}
+
+.cl-effect-5 li a span::before {
+	position: absolute;
+	top: 100%;
+	content: attr(data-hover);
+	font-weight: 200;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	text-align: center;
+	width: 100%;
+}
+
+.cl-effect-5 li a:hover span,
+.cl-effect-5 li a:focus span {
+	-webkit-transform: translateY(-100%);
+	-moz-transform: translateY(-100%);
+	transform: translateY(-100%);
+}
+
+.hamburger {
+	display: none !important;
+	position: fixed;
+	right: 1em;
+	top: 3.3em;
+	z-index: 3;
+}
+
+@media (max-width: 1366px) {
+	nav ul li {
+		padding: 0;
+	}
+}
+
+@media (max-width: 992px) {
+	nav {
+		/* width: 100%;
+		height: 100vh;
+		background: $mainColor;
+		top: 3em;
+		left: 0;
+		right: 0;
+		bottom: 0; */
+		
+		ul {
+			display: none;
+			position: fixed;
+			flex-flow: column nowrap;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			background: $mainColor;
+			padding: 0;
+			margin: 0;
+			animation: overlay .5s;
+			
+			li {
+				height: 4em;
+				
+				a {
+					font-size: 3em;
+				}
+			} 
+		}
+		
+		@keyframes overlay {
+			0% {
+				height: 0;
+			}
+			
+			100% {
+				height: 100%;
+			}
+		}
+	
+		
+		.logo {
+			z-index: 1;
+			width: 115px;
+			height: 115px;
+		}
+	}
+	
+	.hamburger {
+		display: block !important;
+	}
+}
+
+@media (max-width: 592px) {
+	.metaNav {
+		div:nth-child(2) {
+			display: none;
+		}
+		
+		.phone {
+			margin: 0;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	nav {
+		ul {
+			justify-content: center;
+			
+			li {
+				height: calc(50%/4);
+				
+				a {
+					font-size: 2em;
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,700|Work+Sans:400,700');
+
+$mainColor: #394854; /* gray */
+$secColor: #C4B69A; /* beige */
+$white: #FFF; 
+$gray: #F2F2F2;
+
+@mixin headline($weight) {
+	font-family: 'Poppins', sans-serif;
+	font-weight: $weight;
+	text-transform: uppercase;
+}
+
+@mixin ft {
+	font-family: 'Work Sans', sans-serif;
+}
+
+@mixin flex {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+@mixin transition {
+	-moz-transition: ease-in-out .5s all;
+	-o-transition: ease-in-out .5s all;
+	-webkit-transition: ease-in-out .5s all;
+	transition: ease-in-out .5s all;
+}

@@ -1,0 +1,939 @@
+/* Scss Document */
+
+@import 'variables';
+@import 'menu';
+@import 'hamburgers';
+@import 'owl.carousel';
+@import 'social';
+@import 'company';
+@import 'inspiration';
+@import 'imagePage';
+
+
+body, html {
+	@include ft; 
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+h1, h3, h4, h5 {
+	@include headline(700); 
+}
+
+h1 {
+	font-size: 2.5em;
+	line-height: 1em;
+}
+
+h2 {
+	@include headline(200);
+	font-size: 1.3em;
+	text-align: center;
+	margin: 0 0 4em 0;
+	color: $secColor;
+	text-transform: none;
+}
+
+h4 {
+	font-size: 2.5em;
+	line-height: 1em;
+	color: $white;
+}
+
+h3 {
+	font-size: 1.5em;
+	text-align: center;
+	color: $mainColor;
+	font-size: 1.5em;
+	margin: 1.5em 0 0 0;
+}
+
+h5 {
+	font-size: 1em;
+	margin: 2em 0 0 0;
+}
+
+p, ul li a {
+	font-size: .9em;
+	letter-spacing: 1px;
+	line-height: 1.4em;
+}
+
+a {
+	cursor: pointer;
+	color: $mainColor;
+	text-decoration: none;
+	@include transition;
+	
+	&:hover {
+		color: $secColor;
+	}
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+#buttons, #formBtn {
+	@include flex;
+	padding-left: 2em;
+	margin-top: 2.5em;
+	
+	.btn {
+		@include headline(700);
+		font-size: 1em;
+		padding: .7em 2em;
+		
+		&:first-child {
+			margin-right: 2em;
+		}
+	}
+	
+	.btnEffect {
+		color: $white;
+		transition: all 0.5s;
+		position: relative;
+	}
+	
+	.btnEffect::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		background: $secColor;
+		border: 1px solid $secColor;
+		transition: all 0.3s;
+	}
+	
+	.btnEffect:hover::before {
+		opacity: 0 ;
+		transform: scale(0.5,0.5);
+	}
+	
+	.btnEffect::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		opacity: 0;
+		transition: all 0.3s;
+		border: 1px solid rgba(255,255,255,.5);
+		transform: scale(1.2,1.2);
+	}
+	
+	.btnEffect:hover::after {
+		opacity: 1;
+		transform: scale(1,1);
+	}
+}
+
+.link {
+	cursor: pointer;
+	display: block;
+	align-items: center;
+	text-transform: uppercase;
+	margin: 1.5em 0;
+	
+	&:before {
+		content: "";
+		display: inline-block;
+		width: 50px;
+		height: 2px;
+		margin: 0 1em .3em 0;
+		transition: width .5s ease-in-out;
+	}
+  
+	  &:after {
+		content: "";
+		display: inline-block;
+		width: 0;
+		height: 2px;
+		margin: 0 1em .3em 1em;
+		  transition: width .5s ease-in-out;
+	  }
+	
+		&:hover:before {
+			width: 0;
+		}
+
+		&:hover:after {
+			width: 50px;
+		}
+}
+
+.introWrapper {
+	position: relative; 
+	top: 3em; 
+	width: 100%;
+	height: 80vh;
+	margin-bottom: 10%;
+	z-index: 0;
+	
+	.intro {
+		@include flex;
+		width: 60%;
+		margin: 0 auto;
+		
+		.bottle {
+			padding: 6em 0 0 0;
+			min-width: 300px;
+		}
+		
+		.ginCarousel {
+			width: 300px;
+			height: 692px;
+			
+			.owl-item img {
+				padding: 0 0 0 1em !important;
+				max-width: 275px;
+			} 
+		}
+		
+		.introText {
+			padding: 6em 0 0 2em;
+			
+			.advantages {
+				@include flex;
+				flex-flow: row wrap;
+				
+				.item {
+					@include flex;
+					align-items: center;
+					width: 50%;
+					
+					span {
+						display: block;
+						background: url("../img/icons/checked.svg") no-repeat;
+						background-size: contain;
+						width: 50px;
+						height: 30px;
+						margin: .5em;
+					}
+					
+					p {
+						width: 300px;
+					}
+				}
+			}
+			
+			h1, p {
+				color: $white;
+			}
+		}
+	}
+}
+
+.wrapper {
+	margin-bottom: 4em;
+	padding-top: 4em;
+	
+	.intro {
+		@include flex;
+		width: 80%;
+		margin: 0 auto;
+		
+		div:first-child, div:last-child {
+			flex-grow: 1
+		}
+		
+		div:nth-child(2) {
+			flex-grow: 1;
+			
+		}
+		
+		.cls-1 {
+			fill:none;
+			stroke:#0d1f21;
+			stroke-miterlimit:10;
+			max-width: 210px;
+			@include flex;
+			margin: 0 auto;
+			
+		} 
+		
+		.leftText, .leftText h3 {
+			text-align: right;
+			
+			.ingredients {
+				align-items: flex-end;
+				
+				.item {
+					margin: 0;
+				}
+			}
+		}
+			
+			.rightText, .rightText h3 {
+				text-align: left;
+		}
+		
+		
+			
+			.ingredients {
+				@include flex;
+				flex-flow: column;
+				
+				.item {
+					
+					h3 {
+						
+						span {
+						display: none;
+						}
+					}
+					
+					
+					
+					p {
+						width: 300px;
+						margin: 0;
+					}
+				}
+			}
+			
+			h1, p {
+				color: $mainColor;
+			}
+	}	
+}
+
+.teaser {
+	@include flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	margin-top: 8em;
+	padding-bottom: 4em;
+	
+	.item {
+		position: relative;
+		width: 25%;
+		max-width: 500px;
+		min-width: 320px;
+		height: auto;
+		min-height: 500px;
+		margin: 2em;
+		@include transition;
+		
+		&:hover {
+			transform: scale(1.02);
+			background-size: 100%;
+			box-shadow: 5px 5px 10px $secColor;
+		}
+		
+		figcaption {
+			position: absolute;
+			width: 100%;
+			bottom: 0;
+			background: $mainColor;
+			
+			h3, .link {
+				color: $white;
+				text-align: left;
+			}
+			
+			h3 {
+				margin: 0;
+				padding: .5em 0 0 .5em;
+			}
+			
+			.link {
+				&:before, &:after {
+					background: $white;
+				}
+			}
+		}
+	}
+}
+
+.confiBtn {
+	@include flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 4em;
+	background: $secColor;
+	@include transition;
+	
+	&:hover {
+		background: $mainColor;
+	}
+	
+	h1 {
+		color: $white;
+	}
+}
+
+.boxWrapper, .limomacher {
+	@include flex;
+	flex-flow: row wrap;
+	
+	.leftBox, .rightBox, .leftLimoBox, .rightLimoBox {
+		width: 50%;
+		
+		&:before {
+			content: "";
+			float: left;
+			padding-top: 100%;
+		}
+	}
+
+	.leftBox {
+		box-sizing: border-box;
+		@include flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2em;
+		
+		.innerBox {
+			a {
+					color: $white !important;
+				}
+			
+			.link {
+				&:before, &:after {
+					background: $white;
+				}
+			}
+		}
+	}
+		
+		.leftLimoBox {
+			@include flex;
+			justify-content: flex-end;
+			align-items: center;
+			
+			.innerBox {
+				margin-right: -6.5em;
+				z-index: 0;
+				
+				img {
+					max-width: 200px;
+					height: auto;
+					margin-bottom: 3em;
+				}
+			}
+		}
+		
+		.rightLimoBox {
+			box-sizing: border-box;
+			@include flex;
+			justify-content: center;
+			align-items: center;
+			padding: 2em;
+			background: $secColor;
+			
+			h3 {
+				text-align: left;
+			}
+			
+			.innerBox {
+				padding: 0 4em 0 8em;
+			}
+			
+			h3, p {
+					color: $white;
+				}
+			
+			.link {
+				margin-top: 2em;
+				color: $white;
+				
+				&:before, &:after {
+					background: $white;
+				}
+			}
+		}
+}
+
+.customer {
+	margin: 8em 0;
+	
+	.customerGrid {
+		@include flex;
+		flex-flow: row wrap;
+		justify-content: center;
+		width: 80%;
+		margin: 0 auto;
+		z-index: 0;
+
+		.owl-item {
+			box-sizing: border-box;
+			max-width: 20%;
+			padding: 2em;
+			border-right: 1px solid $gray;
+			
+			&:nth-child(5n+5) {
+				border-right: none;
+			}
+		}
+	}
+	
+	.owl-dots {
+		margin: 3em 0 0 0;
+		
+		.owl-dot {
+			width: 40px;
+			height: 10px;
+			background: $secColor !important;
+			margin: 0 .5em;
+		}
+		
+		.active {
+			background: $mainColor !important;
+		}
+	}	
+}
+
+footer {
+	@include flex;
+	flex-flow: row wrap;
+	background: $mainColor;
+	justify-content: space-around;
+	color: $white;	
+	width: 100%;
+	height: 300px;
+	
+	a {
+		color: $white;	
+		
+		&:hover {
+			color: $white;	
+		}
+	}
+	
+	p {
+		margin: 0;
+		line-height: 1.4em;
+	}
+	
+	.sitemap {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		
+		li {
+			overflow: hidden;
+			line-height: 1.4;
+		}
+		
+		a {
+			color: $white;
+			padding: 0;
+		}
+		
+		li a span::before {
+			position: absolute;
+			top: 100%;
+			width: 220px;
+			content: attr(data-hover);
+			font-weight: 700;
+			-webkit-transform: translate3d(0,0,0);
+			-moz-transform: translate3d(0,0,0);
+			transform: translate3d(0,0,0);
+			text-align: left;
+		}
+	}
+	
+	.paymentGrid, .socialMedia {
+		@include flex;
+		flex-wrap: wrap;
+		width: 200px;
+		
+		.payItem {
+			max-width: 75px;
+			margin-right: .3em;
+		}
+		
+		.socialItem svg {
+			height: 30px;
+			margin-right: 2em;
+			
+			&:hover svg path {
+				fill: $secColor !important;
+			}
+		}
+	}
+	
+	.socialMedia {
+		margin-top: 3em;
+	}
+}
+
+.copyright {
+	background: $mainColor;
+	width: 100%;
+	font-size: .7em;
+	color: $white;
+	text-align: center;
+	padding: .5em 0;
+}
+@media (min-width: 1920px) {
+	h1, h4 {
+		font-size: 4.5em;
+	}
+	
+	.introWrapper {
+		margin-bottom: 7%;
+	}
+	
+	.introWrapper .intro .bottle {
+		min-width: 400px;
+	}
+	
+	.wrapper .intro .madeInAustria {
+		margin-left: 20em;
+	}
+	
+	.introWrapper .intro .ginCarousel {
+		width: 360px;
+		
+		.owl-item img {
+			max-width: 100%;
+		}
+	}
+	
+	.wrapper .intro .innerWrapper .ingredients .item p {
+		width: 400px;
+	}
+	
+	.limomacher {
+		.rightLimoBox {
+			.innerBox {
+				padding: 0 12em;
+			}
+		}
+	}
+	
+	.boxWrapper {
+		.leftBox {
+			.innerBox {
+				padding: 4em;
+			}
+		}
+	}
+	
+	.confiBtn {
+		height: 7em;
+		transition: .5s ease-in-out;
+		
+		h1 {
+			font-size: 3em;
+		}
+	}
+}
+
+@media (min-width: 1439px) {
+	.introWrapper .intro {
+		
+		.introText {
+			padding: 8em 0 0 6em;
+		}
+		
+		.bottle {
+			padding-top: 6em;
+		}
+		.ginAnimation {
+			transform: scale(1.1);
+		}
+	}
+	
+	#buttons {
+		padding-left: 6em;
+	}
+}
+
+
+@media (max-width: 1365px) {
+	.introWrapper {
+		.intro {
+			width: 80%;
+		}
+	}
+	
+	.wrapper .intro {
+		width: 100%;
+		
+		.bottleAnimation {
+			margin: 0 2em;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.customer .customerGrid {
+		width: 80%;
+	}
+	
+	.wrapper .intro {
+		width: 100%;
+	}
+}
+
+@media (max-width: 834px) {
+	h1 {
+		font-size: 2em;
+	}
+	
+	h2 {
+		font-size: 1.8em;
+	}
+	
+	.introWrapper {
+		height: 60vh;
+		
+		.intro {
+			
+			.introText{
+				padding: 3em 0 0 2em;
+				
+				.advantages {
+					flex-flow: column nowrap;
+					
+					.item {
+						width: 100%;
+						height: 3.5em;
+						
+						p {
+							width: 260px;
+						}
+					}
+				}	
+			}
+		}
+	}
+	
+	#buttons {
+		flex-direction: column;
+		
+		.btn {
+			width: 165px;
+			text-align: center;
+		}
+		
+		.btn:first-child {
+			margin: 0 0 1.5em 0;
+		}
+	}
+	
+	.wrapper .intro {
+		width: 100%;
+	} 
+	
+	.wrapper .intro .innerWrapper .ingredients {
+		padding: 0;
+	}
+	
+	footer {
+		height: auto;
+		
+		.footerCol {
+			box-sizing: border-box;
+			min-width: 200px;
+			padding: 1em;
+		}
+		
+		.footerCol {
+			max-width: 200px;
+		}
+		
+		.socialMedia {
+			justify-content: center;
+		}
+	}
+	
+	.copyright {
+		padding: 1.5em 0;
+	}
+	
+	.customer .customerGrid {
+		width: 75%;
+		
+		.item {
+			max-width: 33.33%;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	h1 {
+		font-size: 1.7em;
+	}
+	
+	.introWrapper {
+		height: auto;
+		padding-bottom: 3em;
+		
+		.intro {
+			flex-flow: column nowrap;
+			
+			.bottle {
+				min-width: auto;
+				margin: 0 auto;
+				display: block;
+			}
+			
+			.introText {
+				padding: 0;
+			}
+		}
+	}
+	
+	#buttons {
+		padding: 0;
+		align-items: center;
+		
+		.btn {
+			width: 80%;
+		}
+	}
+	
+	.wrapper {
+		h2 {
+			margin-bottom: 1em;
+		}
+		
+		.intro {
+			flex-direction: column;
+			box-sizing: border-box;
+			padding: 1em;
+		
+		div:nth-child(2) {
+			order: -1;
+		}
+			
+		.cls-1 {
+			display: none;
+		}
+		
+		.leftText, .rightText {
+			text-align: left;
+			
+			.ingredients {
+				flex-flow: column nowrap;
+			
+			.item {
+				width: 100%;
+				border-bottom: 1px solid $secColor;
+				margin-bottom: .5em;
+				
+				h3 {
+					display: inline-flex;
+					cursor: pointer;
+					margin: 0;
+					position: relative;
+					width: 100%;
+				}
+				
+				.addIcon {
+					content: "";
+					position: absolute;
+					display: block;
+					background: url("../img/icons/add-circel.svg") no-repeat;
+					background-size: contain;
+					right: 0;
+					top: 0;
+					width: 25px;
+					height: 25px;
+					margin: .2em .5em .2em .2em;
+					@include transition;
+				}
+				
+				.rotate {
+					-moz-transform: rotate(-45deg);
+					-webkit-transform: rotate(-45deg);
+					transform: rotate(-45deg);
+				}
+				
+				p {
+					display: none;
+					padding: 0;
+					margin-bottom: 2em;
+					width: 100%;
+					min-width: 100%;
+				}
+			}
+		}
+	}	
+}
+}
+	
+	.teaser {
+		margin-top: 0;
+		
+		.item {
+			width: 100%;
+			margin: 1em;
+		}
+	}
+		
+	
+	.boxWrapper, .limomacher {
+		flex-flow: column nowrap;
+		
+		.leftBox, .rightBox, .leftLimoBox, .rightLimoBox {
+			width: 100%;
+		}
+		
+		.leftBox {
+			order: 2;
+		}
+		
+		.rightBox {
+			order: 1;
+		}
+		
+		.leftLimoBox {
+			align-items: flex-end;
+			justify-content: center;
+			
+			.innerBox {
+				margin-bottom: -8.5em;
+				margin-right: 0;
+			}
+		}
+		
+		.rightLimoBox {
+			.innerBox {
+				padding: 1.5em 0 0 0;
+			}
+		}
+	}
+	
+	.customer .customerGrid {
+		width: 85%;
+		
+		.item {
+			padding: 1.2em;
+		}
+	}
+}
+
+@media (max-height: 600px) {
+	.introWrapper .intro .ginCarousel {
+		width: auto;
+		height: auto;
+		
+		.owl-stage-outer {
+			width: 200px;
+		}
+	}
+	
+	.introWrapper .intro .ginCarousel .owl-item img {
+		padding: 0 0 0 0.5em !important;
+		max-width: 200px;
+	}
+}
+
+

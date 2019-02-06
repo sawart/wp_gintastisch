@@ -1,0 +1,256 @@
+.inspiration {
+	@include flex;
+	flex-flow: row nowrap;
+	max-width: 1366px;
+	margin: 7em auto 0;
+	
+	.leftCol, .rightCol {
+		width: 50%;
+		margin: .5em;
+	}
+	
+	.leftCol {
+		@include flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		img {
+			max-width: 50%;
+		}
+		
+		&:before {
+			content: "";
+			float: left;
+			padding-top: 100%;
+		}
+	}
+	
+	.rightCol {
+			@include flex;
+			flex-flow: row wrap;
+		
+		.square {
+			@include flex;
+			justify-content: center;
+			flex-direction: column;
+			flex: 1 0 50%;
+			min-height: 320px;
+					
+			&:after {
+				content: "";
+				display: block;
+			}
+			
+			h3 {
+				text-align: left;
+				color: $white;
+			}
+		}
+		
+		.gray, .red {
+			box-sizing: border-box;
+			padding: 2em;
+			color: $white;
+			min-width: 320px;
+		}
+		
+		.gray {
+			background: $mainColor;
+		}
+
+		.red {
+			background: $secColor;
+		}
+	}
+	
+	.square .customerName {
+		font-size: .7em;
+		font-weight: bold;
+	}
+	
+	.quote {
+		z-index: 0;
+		
+		.owl-stage-outer {
+			margin-right: 1em;
+		}
+		
+		.owl-dots {
+			margin-top: 2em;
+			
+			.owl-dot {
+				width: 40px;
+				height: 10px;
+				background: $secColor !important;
+				margin: .5em;
+			}
+			
+			.active {
+				background: $gray !important;
+			}
+		}
+	}
+}
+
+.inspirationGrid {
+	max-width: 1366px;
+	@include flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	margin: 0 auto;
+	
+	.item {
+		position: relative;
+		margin: .5em .5em .5em;
+		max-height: 500px;
+		
+		&:before {
+			content: "";
+			display: block;
+			padding-bottom: 100%;
+		}
+		
+		figcaption {
+			cursor: pointer;
+			position: absolute;
+			background: url("../img/organicBoxBackground.svg") no-repeat;
+			background-size: cover;
+			width: 100%;
+			bottom: 0;
+			height: 60px;
+			overflow: hidden;
+			-webkit-transition: height .5s ease-in-out;
+			-moz-transition: height .5s ease-in-out;
+			transition: height .5s ease-in-out;
+			
+			h3 {
+				color: $white;
+				text-align: left;
+				margin: 0;
+				padding: .5em 0 .5em 1em;
+			}
+			
+			p {
+				color: $white;
+				padding: .5em 0 .5em 1.5em;
+			}
+			
+			/* .linkBox {
+				position: absolute;
+				bottom: 0;
+			} */
+			
+			.link {
+				color: $white;
+				
+				&:before, &:after {
+					background: $white;
+				}
+			}
+			
+			p, .linkBox {	
+				opacity: 0;
+				-webkit-transition: opacity 1s, -webkit-transform 1s;
+				transition: opacity 1s, transform 1s;
+				-webkit-transform: translate3d(0,50px,0);
+				transform: translate3d(0,50px,0);
+			}
+			
+			.linkBox {	
+				opacity: 0;
+				-webkit-transition: opacity .2s, -webkit-transform .35s;
+				transition: opacity .2s, transform .35s;
+				-webkit-transform: translate3d(0,50px,0);
+				transform: translate3d(0,50px,0);
+			}
+			
+			&:hover, &:active {
+				height: 60%;
+				-webkit-user-select: none; 
+				-webkit-touch-callout: none;
+				
+				p, .linkBox {
+					opacity: 1;
+					-webkit-transform: translate3d(0,0,0);
+					transform: translate3d(0,0,0);
+				}
+			}
+		}
+	}
+	
+	.col25 {
+		width: 25%;
+	}
+	
+	.col33 {
+		width: 33.33%;
+	}
+	
+	.col40 {
+		width: 40%;
+	}
+	
+	.col50 {
+		width: 50%;
+	}
+	
+	.col60 {
+		width: 60%;
+	}
+	
+	.col75 {
+		width: 75%;
+	}
+}
+
+@media (max-width: 768px) {
+	.inspiration, .inspirationGrid {
+		flex-flow: column nowrap;
+		box-sizing: border-box;
+		padding: 0 1em 0;
+		
+		.item {
+			margin: 0;
+		}
+		
+		.leftCol, .rightCol {
+			width: 100%;
+			margin: 0;
+		}
+		
+		.rightCol .square {
+			min-height: 450px;
+		}
+		
+		.leftCol img {
+			width: 30%;
+		}
+		
+		.rightCol  {
+			order: 1;
+		}
+		
+		.leftCol {
+			order: 2;
+		}
+		
+		.col25, .col33, .col40, .col50, .col60, .col75 {
+			width: 100%;
+			margin-top: .5em;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.inspiration .leftCol img {
+		width: 50%;
+	}
+	
+	.inspirationGrid .item figcaption {
+		&:hover {
+			height: 100%;
+		}
+	}
+}
+

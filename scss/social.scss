@@ -1,0 +1,96 @@
+.social {
+	@include flex;
+	flex-flow: row nowrap;
+	margin-top: 7.5em;
+	
+	h3 {
+		color: $white;
+		margin-top: 4em;
+		text-align: left;
+	}
+	
+	.imgGrid {
+		width: 66.66%;
+		
+		.gridItem {
+			column-count: 3;
+			column-gap: .5em;
+		}
+	}
+	
+	.socialCard {
+		box-sizing: border-box;
+		background: $mainColor;
+		width: 33.33%;
+		min-width: 400px;
+		padding: 2em;
+		color: $white;
+		
+		&:before {
+			content: "";
+			float: left;
+			padding-top: 100%;
+		}
+		
+		p {
+			margin-bottom: 3em;
+		}
+		
+		.link {
+			color: $white;
+			
+			&:after, &:before {
+				background: $white;
+			}
+		}
+	}
+}
+
+@media (max-width: 992px) {
+	.social .imgGrid .gridItem {
+		column-count: 2;
+	}
+}
+
+@media (max-width: 767px) {
+	.social {
+		flex-flow: column nowrap;
+		
+		.imgGrid {
+			order: 2;
+			width: 100%;
+			
+			.gridItem {
+				column-count: 2;
+			}
+		}
+		
+		.socialCard {
+			order: 1;
+			width: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.social {
+		box-sizing: border-box;
+		margin: 1em;
+		
+		.socialCard {
+			min-width: auto;
+		}
+		
+		.imgGrid {
+			.gridItem {
+				column-count: 1;
+				
+				img {
+					margin: .2em 0;
+				}
+			}
+		}
+	}
+}
+
