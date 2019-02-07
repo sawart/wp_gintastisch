@@ -2,16 +2,19 @@
 	<section class="introWrapper" style="background: url(<?php the_field('landscapeBackground', 'option');?>) no-repeat bottom; background-size: cover;">
 		<div class="intro">
 			<div class="bottle animatedParent">
-				<div class="ginCarousel owl-carousel animated fadeInDown">
+				
 					 <?php if( have_rows('bottleAnimation') ): ?>
+<div class="ginCarousel owl-carousel animated fadeInDown">
+						<?php while ( have_rows('bottleAnimation') ) : the_row(); ?>
 
-									<?php while ( have_rows('bottleAnimation') ) : the_row(); ?>
+							<?php $bottle = get_sub_field('bottle'); ?>
 
-										<div><img src="<?php echo the_sub_field('bottle');?>"></div>
+							<div><img src="<?php echo $bottle['url'] ?>" alt="<?php echo $bottle['alt'] ?>"></div>
 
-									<?php endwhile; ?>
-								<?php endif; ?>
-				</div>
+						<?php endwhile; ?>
+	</div>
+					<?php endif; ?>
+				
 			</div>
 			<div class="introTextWrapper animatedParent">
 				<div class="introText">

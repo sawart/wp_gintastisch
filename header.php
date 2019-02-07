@@ -6,11 +6,11 @@
 <title>Personalisierter Gin - gintastisch.at</title>
 <link href="<?php bloginfo('template_url');?>/css/main.css" rel="stylesheet">
 <link href="<?php bloginfo('template_url');?>/css/animations.css" rel="stylesheet">
-<script>document.addEventListener("touchstart", function(){}, true);</script>
 <!--[if lte IE 9]>
       <link href='css/animations-ie-fix.css' rel='stylesheet'>
 <![endif]-->	
-<link href="css/animate.css" rel="stylesheet">
+<link href="<?php bloginfo('template_url');?>/css/animate.css" rel="stylesheet">
+<script>document.addEventListener("touchstart", function(){}, true);</script>
 <?php wp_head();?>	
 </head>
 
@@ -30,7 +30,7 @@
 			<span class="hamburger-inner"></span>
 		  </span>
 		</button>
-			<a href="index.php"><div style="background: url('<?php the_field('gintastischLogo', 'option');?>'); background-size: cover" class="logo"></div></a>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><div style="background: url('<?php the_field('gintastischLogo', 'option');?>'); background-size: cover" class="logo"></div></a>
 			
 				<?php wp_nav_menu( array(
 						'theme_location' => 'mainMenu',
