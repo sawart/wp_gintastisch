@@ -31,11 +31,16 @@
 		  </span>
 		</button>
 			<a href="index.php"><div style="background: url('<?php the_field('gintastischLogo', 'option');?>'); background-size: cover" class="logo"></div></a>
-			<ul class="cl-effect-5 animatedParent">
-				<li class="animated fadeInDown"><a href="#"><span data-hover="Konfigurator">Konfigurator</span></a></li>
+			
+				<?php wp_nav_menu( array(
+						'theme_location' => 'mainMenu',
+						'menu_class'	 => 'cl-effect-5 animatedParent',
+					) );
+			?>	
+				
+			<!--	<li class="animated fadeInDown"><a href="#"><span data-hover="Konfigurator">Konfigurator</span></a></li>
 				<li class="animated fadeInDown delay-500"><a href="inspiration.php"><span data-hover="Inspiration">Inspiration</span></a></li>
 				<li class="animated fadeInDown delay-750"><a href="company.php"><span data-hover="Firmen">Firmen</span></a></li>
-				<li class="animated fadeInDown delay-1000"><a href="social.php"><span data-hover="Sozial">Sozial</span></a></li>
-			</ul>
+			-->
 	</nav>
 	</header>

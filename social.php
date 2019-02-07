@@ -1,24 +1,55 @@
-<?php include('header.php');?>
+<?php
+/*
+Template Name: Social
+*/
+?>
+
+<?php get_header(); ?>
 	<section class="social">
 		<div class="imgGrid">
-			<div class="gridItem">
-				<img src="img/social/Image-2.png" alt="">
-				<img src="img/social/Image-3.png" alt="">
-				<img src="img/social/Image-1.png" alt="">
-				<img src="img/social/Image-4.png" alt="">	
-				<img src="img/social/Image-5.png" alt="">
-				<img src="img/social/Image.png" alt="">
+			
+				<?php 
+
+				$images = get_field('gallery');
+
+				if( $images ): ?>
+					<div class="gridItem">
+						<?php foreach( $images as $image ): ?>
+	
+							<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+
+						<?php endforeach; ?>
+					</div>
+				<?php endif; ?>
+				
 			</div>
 		</div>
 		<div class="socialCard">
 			<div>
-				<h3>Sozial etikettiert</h3>
-				<p>Jede einzelne Flasche wird von Menschen mit psychisch / physischen Einschränkungen etikettiert. Danke an die soziale Einrichtung Lebenshilfe für diese großartige Partnerschaft seit nun fast zwei Jahren. </p>
+				<?php while(have_posts()) : the_post()?>
+				<h3><?php the_title(); ?></h3>
+				<?php the_content(); ?>
 				<div>
-					<a class="link" href="#">Website</a>
-					<a class="link" href="#">Facebook</a>
+					<?php
+
+					if( have_rows('links') ):
+					
+						while ( have_rows('links') ) : the_row(); ?>
+
+							<a class="link" href="<?php the_sub_field('link') ?>" target="blank"><?php the_sub_field('name') ?></a>
+
+					<?php endwhile;
+
+					else :
+
+						// no rows found
+
+					endif;
+
+					?>
 				</div>
+				<?php endwhile; ?>
 			</div>
 		</div>
 	</section>
-<?php include('footer.php');?>
+<?php get_footer(); ?>

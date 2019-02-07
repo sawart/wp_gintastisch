@@ -1,4 +1,4 @@
-	<footer>
+<footer>
 		<div class="footerCol">
 			<h5>Kontakt</h5>
 			<p><?php the_field('address', 'option'); ?>
@@ -8,13 +8,11 @@
 		</div>
 		<div class="footerCol">
 			<h5>Service</h5>
-			<ul class="sitemap cl-effect-5">
-				<li><a href="#"><span data-hover="Datenschutz">Datenschutz</span></a></li>
-				<li><a href="#"><span data-hover="Impressum">Impressum</span></a></li>
-				<li><a href="#"><span data-hover="AGBs">AGBs</span></a></li>
-				<li><a href="#"><span data-hover="Lieferung &amp; Versand">Lieferung &amp; Versand</span></a></li>
-				<li><a href="#"><span data-hover="Mein Konto">Mein Konto</span></a></li>
-			</ul>
+			<?php wp_nav_menu( array(
+						'theme_location' => 'footerMenu',
+						'menu_class'	 => 'sitemap cl-effect-5',
+					) );
+			?>	
 		</div>
 		<div class="footerCol">
 			<h5>Zahlungsarten</h5>
@@ -45,25 +43,23 @@
 			</div>
 		</div>
 		<div class="footerCol socialMedia">
-			<?php if( have_rows('socialMedia') ): ?>
+			<?php if( have_rows('socialMedia', 'option') ): ?>
 
-				<?php while( have_rows('socialMedia') ): the_row(); 
-
-					// vars
-					$logo = get_sub_field('logo', 'options');
-					$link = get_sub_field('link', 'options');
-
+				<?php while( have_rows('socialMedia', 'option') ): the_row(); 
+						// vars
+						$icon = get_sub_field('icon', 'option');
+						$smLink = get_sub_field('page', 'option');
 					?>
 
 					<div class="socialItem">
 
-						<?php if( $link ): ?>
-							<a href="<?php echo $link; ?>" target="_blank">
+						<?php if( $smLink ): ?>
+							<a href="<?php echo $smLink; ?>" target="_blank">
 						<?php endif; ?>
 
-							<img class="svg" src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt'] ?>" />
+							<img class="svg" src="<?php echo $icon['url']; ?>" alt="<?php echo $icon['alt'] ?>" />
 
-						<?php if( $link ): ?>
+						<?php if( $smLink ): ?>
 							</a>
 						<?php endif; ?>
 

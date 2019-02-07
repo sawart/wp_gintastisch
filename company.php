@@ -1,75 +1,85 @@
-<?php include('header.php');?>
+<?php
+/*
+Template Name: Company
+*/
+?>
+
+<?php get_header();?>
 	<section class="company">
 		<div class="leftCol">
-			<h3>Firmen</h3>
-			<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-			<a class="link" href="">Preisliste (PDF)</a>
-			<a class="link" href="">Lookbook (PDF)</a>
+			<?php while(have_posts()) : the_post() ?>
+			<h3><?php the_title(); ?></h3>
+			<?php the_content(); ?>
+			<?php
+
+				if( have_rows('links') ):
+
+					while ( have_rows('links') ) : the_row(); ?>
+
+						<a class="link" href="<?php the_sub_field('link') ?>" target="blank"><?php the_sub_field('name') ?></a>
+
+				<?php endwhile;
+
+				else :
+
+					// no rows found
+
+				endif;
+
+				?>
+			<?php endwhile; ?>
 		</div>
 		<div class="rightCol">
-			<form action="">
-				<ul>
-					<li>
-						<lable>Firma</lable>
-						<input type="text">
-					</li>
-					<li>
-						<lable>Vorname</lable>
-						<input type="text">
-					</li>
-					<li>
-						<lable>Nachname</lable>
-						<input type="text">
-					</li>
-					<li>
-						<lable>Mail</lable>
-						<input type="text">
-					</li>	
-					<li>	
-						<lable>Telefon</lable>
-						<input type="text">
-					</li>
-				</ul>
-				<div id="formBtn">
-					<a class="btn btnEffect" href="#">okay, raus damit</a>
-				</div>
-			</form>
+			<?php echo do_shortcode('[contact-form-7 id="152" title="Company form"]'); ?>
 		</div>
 	</section>
 	<section class="companyGain">
-		<div><span></span><p>Schnelle Lieferung auch bei großen Mengen</p></div>
-		<div><span></span><p>500ml &amp; 200ml Flaschen</p></div>
-		<div><span></span><p>Auch als Gin Tonic Box erhältlich</p></div>
-		<div><span></span><p>sozial etikettiert</p></div>
+		<?php if( have_rows('companyGain') ): ?>
+
+			<?php while ( have_rows('companyGain') ) : the_row(); ?>
+
+				<div><span></span><p><?php the_sub_field("item"); ?></p></div>
+
+			<?php endwhile; ?>
+		<?php endif; ?>
 	</section>
 	<section class="companyContact">
-	<h3>Ansprechpartner</h3>
-		<h2>Wir bevorzugen persönlichen Service</h2>
+	<h3><?php the_field('supportHeadline');?></h3>
+		<h2><?php the_field('supportSubHeadline');?></h2>
 		<div class="contact">
-			<div class="contactImg"><img src="img/julian-egle.jpg" alt="Julia Egle"></div>
+			<?php $supporter = get_field('supportImg');?>
+			<div class="contactImg"><img src="<?php echo $supporter['url'] ?>" alt="<?php echo $supporter['alt'] ?>"></div>
 				<div class="contactInfo">
-				<h5>Julian Egle</h5>
-					<p>Als kreatives Genie und dem breiten Wissen im Bereich Start-Up und Entrepreneurship &amp; Innovation verwirklicht sich Julian seinen Traum, ein Produkt gänzlich nach seinen Vorstellungen zu vermarkten. Er zeichnet sich für die Bereiche Marketing &amp; Sales verantwortlich.</p>
+				<h5><?php the_field('supporter');?></h5>
+					<p><?php the_field('supportDescription');?></p>
 					<div class="contactDetails">
 						<div class="phone">
-						<span></span><a href="tel:+436608060304">+43 660 80 60 304 </a>	
+						<span></span><a href="tel:<?php the_field('phone', 'option');?>"><?php the_field('phone', 'option');?></a>	
 						</div>
 						<div class="mail">
-						<span></span><a href="mailto:hallo@gintastisch.at" target="_self">hallo@gintastisch.at</a>
+						<span></span><a href="mailto:<?php the_field('mail', 'option');?>" target="_self"><?php the_field('mail', 'option');?></a>
 						</div>
 					</div>
 				</div>	
 		</div>
 	</section>
 	<section class="companyInspiration">
-	<h3>Inspiration</h3>
+	<h3><?php the_field('inspirationHeadline');?></h3>
+		<h2><?php the_field('inspirationSubHeadline');?></h2>
 		<div class="inspirationCarousel owl-carousel owl-theme">
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
-			<div><img src="img/inspiration/Gin_freigestellt_2x.jpg" alt="Gin Flasche"></div>
+			<?php 
+
+				$bottles = get_field('bottles');
+
+				if( $bottles ): ?>
+				
+						<?php foreach( $bottles as $bottle ): ?>
+	
+							<img src="<?php echo $bottle['url']; ?>" alt="<?php echo $bottle['alt']; ?>" />
+
+						<?php endforeach; ?>
+			
+				<?php endif; ?>
 		</div>
 	</section>
-<?php include('footer.php');?>
+<?php get_footer(); ?>

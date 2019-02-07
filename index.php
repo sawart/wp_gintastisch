@@ -96,24 +96,39 @@
 		</div> <!-- INTRO END -->
 	</section>
 	<section class="teaser">
-		<div class="item" style="background: url('img/inspiration/bombay-sapphire.jpg') no-repeat; background-size: cover;">
-			<figcaption>
-				<h3>Vatertagsgeschenke</h3>
-				<a class="link" href="#">mehr Ideen</a>
-			</figcaption>
-		</div>
-		<div class="item" style="background: url('img/inspiration/bombay-sapphire.jpg') no-repeat; background-size: cover;">
-			<figcaption>
-				<h3>Vatertagsgeschenke</h3>
-				<a class="link" href="#">mehr Ideen</a>
-			</figcaption>
-		</div>
-		<div class="item" style="background: url('img/inspiration/bombay-sapphire.jpg') no-repeat; background-size: cover;">
-			<figcaption>
-				<h3>Vatertagsgeschenke</h3>
-				<a class="link" href="#">mehr Ideen</a>
-			</figcaption>
-		</div>
+		<?php
+	
+				$args = array(
+				"post_type" => 'teaser',
+				"post_per_page" => -1,
+				"order" => "ASC",
+				);
+
+				// the query
+				$the_query = new WP_Query( $args ); ?>
+
+				<?php if ( $the_query->have_posts() ) : ?>
+
+					<!-- pagination here -->
+
+					<!-- the loop -->
+					<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+						<div class="item" style="background: url(<?php the_field('teaserImg'); ?>) no-repeat; background-size: cover;">
+							<figcaption>
+								<h3><?php the_title(); ?></h3>
+								<a class="link" href="<?php the_field('teaser'); ?>">mehr Ideen</a>
+							</figcaption>
+						</div>
+					<?php endwhile; ?>
+					<!-- end of the loop -->
+
+					<!-- pagination here -->
+
+					<?php wp_reset_postdata(); ?>
+
+				<?php else : ?>
+					<p><?php esc_html_e( 'Kein Beitrag vorhanden' ); ?></p>
+			<?php endif; ?>
 	</section>
 	<section class="confiBtn">
 		<a href="#"><h1>Zum Konfigurator</h1></a>
@@ -134,8 +149,6 @@
 			
 			
 			<?php
- 				$logo = get_field('logo');
-				$link = get_field('website');
 			
 				$args = array(
 				"post_type" => 'customer',
@@ -153,7 +166,8 @@
 					<!-- the loop -->
 					<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
 						<div>
-						<a href="<?php echo the_field('website'); ?>" target="_blank"><img src="<?php echo the_field('logo'); ?>" alt="<?php echo $logo['alt']; ?>"></a>
+							<?php $logo = get_field('logo'); ?>
+						<a href="<?php echo the_field('website'); ?>" target="_blank"><img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>"></a>
 						</div>
 					<?php endwhile; ?>
 					<!-- end of the loop -->
